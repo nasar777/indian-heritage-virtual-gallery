@@ -1,5 +1,8 @@
 # Indian Heritage Virtual Gallery
 
+## Live Website URL
+
+🌐 **Website:** https://indian-heritage-virtual-gallery.vercel.app/
 
 ## How the Virtual Gallery Works
 
@@ -11,6 +14,7 @@ Open the Indian Heritage Virtual Gallery website.
 
 The home page displays information about Indian handicrafts, textiles, traditional crafts, and the virtual gallery.
 
+
 ### Step 2 - Enter the Virtual Gallery
 
 Click the:
@@ -20,6 +24,7 @@ Click the:
 button on the home page.
 
 This takes the user to the Virtual Gallery page.
+
 
 ### Step 3 - Unity WebGL Loading
 
@@ -36,6 +41,7 @@ The loading process may take some time depending on:
 
 The user should wait until the loading process is completed.
 
+
 ### Step 4 - Explore the Virtual Museum
 
 After Unity finishes loading, the 3D virtual museum becomes available.
@@ -49,6 +55,7 @@ Users can:
 - View the heritage environment and exhibits
 - Interact with the virtual experience
 
+
 ### Step 5 - Fullscreen Mode
 
 The Virtual Gallery page provides a **Fullscreen** option.
@@ -56,6 +63,7 @@ The Virtual Gallery page provides a **Fullscreen** option.
 Users can click **Fullscreen** to get a larger view of the virtual museum.
 
 To return to the normal view, click **Exit Fullscreen**.
+
 
 ### Step 6 - Exit the Gallery
 
@@ -85,7 +93,9 @@ Fullscreen (Optional)
 Exit Gallery
     ↓
 Return to Website
+```
 
+---
 
 ## Technologies Used
 
@@ -103,6 +113,8 @@ Return to Website
 - GitHub
 
 ---
+
+How any one can use in there system 
 
 # 1. Requirements
 
@@ -592,41 +604,8 @@ Do not upload `.env` if it contains passwords, API keys, or other private inform
 
 ---
 
-# 21. Live Website
 
-Current website:
-
-https://indian-heritage-virtual-gallery.vercel.app/
-
----
-
-# 22. GitHub Repository
-
-GitHub Repository:
-
-YOUR_GITHUB_REPOSITORY_LINK
-
----
-
-# 23. Quick Start
-
-Anyone who receives this source code can run it using:
-
-```bash
-npm install
-```
-
-Then:
-
-```bash
-npm run dev
-```
-
-Open the URL shown in the terminal.
-
----
-
-# 24. Complete Setup in Short
+# 20. Complete Setup in Short
 
 ```bash
 git clone YOUR_GITHUB_REPOSITORY_LINK
