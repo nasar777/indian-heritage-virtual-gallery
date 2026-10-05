@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no"
+  >
+
+  <title>Indian Heritage Virtual Gallery | 3D Experience</title>
+
+  <link rel="shortcut icon" href="TemplateData/favicon.ico">
+  <link rel="stylesheet" href="TemplateData/style.css">
+
+  <style>
+    /* =========================================================
+       FULL SCREEN UNITY WEBGL
+    ========================================================= */
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #231f20;
+    }
+
+    #unity-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #unity-container.unity-mobile {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      transform: none;
+    }
+
+    #unity-canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+      margin: 0;
+      padding: 0;
+      outline: none;
+      background: #231f20;
+    }
+
+    /* =========================================================
+       HIDE UNITY DEFAULT FOOTER
+    ========================================================= */
+
+    #unity-footer {
+      display: none !important;
+    }
+
+    /* =========================================================
+       UNITY WARNING
+    ========================================================= */
+
+    #unity-warning {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      z-index: 100;
+    }
+
+    /* =========================================================
+       CUSTOM LOADING SCREEN
+    ========================================================= */
+
+    #unity-loading-bar {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+      z-index: 9999;
+
+      display: none;
+
+      width: 90%;
+      max-width: 500px;
+
+      padding: 28px 24px;
+
+      box-sizing: border-box;
+
+      text-align: center;
+
+      background: rgba(35, 31, 32, 0.96);
+
+      border-radius: 10px;
+    }
+
+    /* =========================================================
+       REMOVE UNITY LOGO
+    ========================================================= */
+
+    #unity-logo {
+      display: none !important;
+    }
+
+    /* =========================================================
+       LOADING TITLE
+    ========================================================= */
+
+    #museum-loading-title {
+      color: #c9a84c;
+
+      font-family: Georgia, serif;
+
+      font-size: 20px;
+
+      font-weight: bold;
+
+      text-align: center;
+
+      margin-bottom: 18px;
+    }
+
+    /* =========================================================
+       LOADING PERCENTAGE
+    ========================================================= */
+
+    #museum-loading-percent {
+      color: #ffffff;
+
+      font-family: Arial, sans-serif;
+
+      font-size: 14px;
+
+      margin-top: 10px;
+
+      text-align: center;
+    }
+
+    /* =========================================================
+       PROGRESS BAR BACKGROUND
+    ========================================================= */
+
+    #unity-progress-bar-empty {
+      width: 300px;
+
+      max-width: 70vw;
+
+      height: 10px;
+
+      margin: 0 auto;
+
+      background: #555555;
+
+      border-radius: 10px;
+
+      overflow: hidden;
+
+      box-sizing: border-box;
+    }
+
+    /* =========================================================
+       PROGRESS BAR
+    ========================================================= */
+
+    #unity-progress-bar-full {
+      width: 0%;
+
+      height: 100%;
+
+      background: #c9a84c !important;
+
+      border-radius: 10px;
+
+      transition: width 0.2s ease;
+
+      box-sizing: border-box;
+    }
+
+    /* =========================================================
+       MOBILE LOADING SCREEN
+    ========================================================= */
+
+    @media (max-width: 768px) {
+      #unity-loading-bar {
+        width: 90%;
+        padding: 22px 15px;
+      }
+
+      #museum-loading-title {
+        font-size: 16px;
+        margin-bottom: 14px;
+      }
+
+      #unity-progress-bar-empty {
+        width: 220px;
+        max-width: 70vw;
+        height: 8px;
+      }
+
+      #museum-loading-percent {
+        font-size: 12px;
+        margin-top: 8px;
+      }
+    }
+
+    /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+    @media (max-width: 480px) {
+      #unity-loading-bar {
+        padding: 20px 12px;
+      }
+
+      #museum-loading-title {
+        font-size: 14px;
+      }
+
+      #unity-progress-bar-empty {
+        width: 200px;
+        height: 8px;
+      }
+
+      #museum-loading-percent {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       UNITY CONTAINER
+  ========================================================= -->
+
+  <div id="unity-container" class="unity-desktop">
+
+    <!-- =======================================================
+         UNITY CANVAS
+    ======================================================== -->
+
+    <canvas
+      id="unity-canvas"
+      width="1920"
+      height="1080"
+      tabindex="-1">
+    </canvas>
+
+    <!-- =======================================================
+         CUSTOM LOADING SCREEN
+    ======================================================== -->
+
+    <div id="unity-loading-bar">
+
+      <div id="museum-loading-title">
+        🏛️ Indian Heritage Virtual Gallery
+      </div>
+
+      <div id="unity-progress-bar-empty">
+        <div id="unity-progress-bar-full"></div>
+      </div>
+
+      <div id="museum-loading-percent">
+        Loading... 0%
+      </div>
+
+    </div>
+
+    <!-- =======================================================
+         UNITY WARNING
+    ======================================================== -->
+
+    <div id="unity-warning"></div>
+
+    <!-- =======================================================
+         UNITY FOOTER
+         Hidden using CSS
+    ======================================================== -->
+
+    <div id="unity-footer">
+
+      <div id="unity-logo-title-footer"></div>
+
+      <div id="unity-fullscreen-button"></div>
+
+      <div id="unity-build-title">
+        Indian Heritage Virtual Gallery
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       UNITY SCRIPT
+  ========================================================= -->
+
+  <script>
+
+    /* =========================================================
+       CANVAS
+    ========================================================= */
+
+    var canvas =
+      document.querySelector("#unity-canvas");
+
+
+    /* =========================================================
+       UNITY WARNING BANNER
+    ========================================================= */
+
+    function unityShowBanner(msg, type) {
+
+      var warningBanner =
+        document.querySelector("#unity-warning");
+
+      function updateBannerVisibility() {
+
+        warningBanner.style.display =
+          warningBanner.children.length
+            ? "block"
+            : "none";
+      }
+
+      var div =
+        document.createElement("div");
+
+      div.innerHTML = msg;
+
+      warningBanner.appendChild(div);
+
+      if (type === "error") {
+
+        div.style =
+          "background: red; padding: 10px; color: white;";
+
+      } else {
+
+        if (type === "warning") {
+
+          div.style =
+            "background: yellow; padding: 10px; color: black;";
+        }
+
+        setTimeout(function () {
+
+          if (warningBanner.contains(div)) {
+
+            warningBanner.removeChild(div);
+
+          }
+
+          updateBannerVisibility();
+
+        }, 5000);
+      }
+
+      updateBannerVisibility();
+    }
+
+
+    /* =========================================================
+       UNITY BUILD CONFIGURATION
+       
+       IMPORTANT:
+       Your friend renamed the Unity files to "final".
+    ========================================================= */
+
+    var buildUrl = "Build";
+
+    var loaderUrl =
+      buildUrl + "/finallll.loader.js";
+
+    var config = {
+
+      arguments: [],
+
+      dataUrl:
+        buildUrl + "/finallll.data.unityweb",
+
+      frameworkUrl:
+        buildUrl + "/finallll.framework.js.unityweb",
+
+      codeUrl:
+        buildUrl + "/finallll.wasm.unityweb",
+
+      streamingAssetsUrl:
+        "StreamingAssets",
+
+      companyName:
+        "Indian Heritage Virtual Gallery",
+
+      productName:
+        "Indian Heritage Virtual Gallery",
+
+      productVersion:
+        "1.0.0",
+
+      showBanner:
+        unityShowBanner
+    };
+
+
+    /* =========================================================
+       MOBILE / DESKTOP
+    ========================================================= */
+
+    if (
+      /iPhone|iPad|iPod|Android/i.test(
+        navigator.userAgent
+      )
+    ) {
+
+      /* ---------------------------------------
+         MOBILE
+      --------------------------------------- */
+
+      var meta =
+        document.createElement("meta");
+
+      meta.name = "viewport";
+
+      meta.content =
+        "width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes";
+
+      document
+        .getElementsByTagName("head")[0]
+        .appendChild(meta);
+
+      document
+        .querySelector("#unity-container")
+        .className = "unity-mobile";
+
+      canvas.className =
+        "unity-mobile";
+
+      canvas.style.width =
+        "100%";
+
+      canvas.style.height =
+        "100%";
+
+      /*
+        If mobile performance is slow,
+        you can enable this:
+
+        config.devicePixelRatio = 1;
+      */
+
+    } else {
+
+      /* ---------------------------------------
+         DESKTOP
+      --------------------------------------- */
+
+      canvas.style.width =
+        "100%";
+
+      canvas.style.height =
+        "100%";
+    }
+
+
+    /* =========================================================
+       SHOW LOADING SCREEN
+    ========================================================= */
+
+    var loadingBar =
+      document.querySelector(
+        "#unity-loading-bar"
+      );
+
+    var progressBar =
+      document.querySelector(
+        "#unity-progress-bar-full"
+      );
+
+    var loadingPercent =
+      document.querySelector(
+        "#museum-loading-percent"
+      );
+
+    loadingBar.style.display =
+      "block";
+
+
+    /* =========================================================
+       LOAD UNITY LOADER
+    ========================================================= */
+
+    var script =
+      document.createElement("script");
+
+    script.src =
+      loaderUrl;
+
+
+    /* =========================================================
+       LOADER SUCCESS
+    ========================================================= */
+
+    script.onload = () => {
+
+      /* =======================================
+         CREATE UNITY INSTANCE
+      ======================================== */
+
+      createUnityInstance(
+
+        canvas,
+
+        config,
+
+        (progress) => {
+
+          /* -----------------------------------
+             Convert progress to percentage
+          ----------------------------------- */
+
+          var percentage =
+            Math.round(
+              progress * 100
+            );
+
+
+          /* -----------------------------------
+             Update progress bar
+          ----------------------------------- */
+
+          progressBar.style.width =
+            percentage + "%";
+
+
+          /* -----------------------------------
+             Update percentage text
+          ----------------------------------- */
+
+          loadingPercent.textContent =
+            "Loading... " +
+            percentage +
+            "%";
+        }
+
+      )
+
+      /* =======================================================
+         UNITY LOADED
+      ======================================================== */
+
+      .then((unityInstance) => {
+
+        /* -----------------------------------
+           Make sure progress reaches 100%
+        ----------------------------------- */
+
+        progressBar.style.width =
+          "100%";
+
+        loadingPercent.textContent =
+          "Loading... 100%";
+
+
+        /* -----------------------------------
+           Small delay before hiding
+        ----------------------------------- */
+
+        setTimeout(() => {
+
+          loadingBar.style.display =
+            "none";
+
+        }, 300);
+
+
+        /* -----------------------------------
+           Fullscreen button
+        ----------------------------------- */
+
+        var fullscreenButton =
+          document.querySelector(
+            "#unity-fullscreen-button"
+          );
+
+        if (fullscreenButton) {
+
+          fullscreenButton.onclick = () => {
+
+            unityInstance.SetFullscreen(1);
+
+          };
+        }
+
+      })
+
+
+      /* =======================================================
+         UNITY LOADING ERROR
+      ======================================================== */
+
+      .catch((message) => {
+
+        console.error(
+          "Unity loading error:",
+          message
+        );
+
+        loadingPercent.textContent =
+          "Unable to load the virtual gallery.";
+
+        unityShowBanner(
+          "Unable to load the virtual gallery.",
+          "error"
+        );
+
+      });
+
+    };
+
+
+    /* =========================================================
+       LOADER ERROR
+    ========================================================= */
+
+    script.onerror = () => {
+
+      console.error(
+        "Unity loader not found:",
+        loaderUrl
+      );
+
+      loadingPercent.textContent =
+        "Unable to load Unity.";
+
+      unityShowBanner(
+        "Unity loader not found. Please check the Build folder.",
+        "error"
+      );
+    };
+
+
+    /* =========================================================
+       ADD UNITY LOADER SCRIPT
+    ========================================================= */
+
+    document.body.appendChild(script);
+
+  </script>
+
+</body>
+</html>

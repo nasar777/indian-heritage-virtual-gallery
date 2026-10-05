@@ -1,0 +1,433 @@
+/* =========================================================
+   HOME PAGE
+   Craft-Focused Virtual Gallery
+   Optimized for Desktop + Tablet + Mobile
+========================================================= */
+
+.home-page {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================
+   BACKGROUND SLIDES
+========================================================= */
+
+.hero-slides {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 0;
+  visibility: hidden;
+
+  /* Only fade between slides */
+  transition:
+    opacity 0.8s ease,
+    visibility 0.8s ease;
+
+  /* Helps browser optimize the layer */
+  will-change: opacity;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* =========================================================
+   HERO OVERLAY
+========================================================= */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(74, 15, 28, 0.55) 0%,
+      rgba(44, 24, 16, 0.68) 55%,
+      rgba(44, 24, 16, 0.86) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 850px;
+
+  padding: 0 1.5rem;
+
+  text-align: center;
+  color: var(--white);
+
+  animation: fadeUp 0.7s ease forwards;
+}
+
+/* =========================================================
+   BADGE
+========================================================= */
+
+.hero-badge {
+  display: inline-block;
+
+  background: rgba(201, 168, 76, 0.18);
+
+  border: 1px solid var(--gold);
+
+  color: var(--gold-light);
+
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  padding: 0.4rem 1rem;
+
+  border-radius: 20px;
+
+  margin-bottom: 1.4rem;
+}
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
+.hero-title {
+  margin: 0 0 1.2rem;
+
+  font-size: clamp(3rem, 6vw, 5rem);
+
+  line-height: 1.05;
+
+  color: var(--white);
+
+  text-shadow:
+    0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title span {
+  color: var(--gold-light);
+}
+
+/* =========================================================
+   HERO SUBTITLE
+========================================================= */
+
+.hero-subtitle {
+  max-width: 650px;
+
+  margin: 0 auto 2rem;
+
+  font-size: clamp(1rem, 2vw, 1.2rem);
+
+  line-height: 1.65;
+
+  color: rgba(253, 246, 236, 0.9);
+}
+
+/* =========================================================
+   HERO BUTTON
+========================================================= */
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-buttons .btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 235px;
+
+  padding: 0.85rem 1.4rem;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   SCROLL INDICATOR
+========================================================= */
+
+.hero-scroll {
+  position: absolute;
+
+  bottom: 1.8rem;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  z-index: 2;
+
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+
+  gap: 0.35rem;
+
+  color: rgba(253, 246, 236, 0.65);
+
+  font-size: 0.7rem;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  animation: bounce 2s infinite;
+}
+
+.hero-scroll::after {
+  content: '↓';
+  font-size: 1.2rem;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+
+  .hero-content {
+    max-width: 760px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
+  }
+
+  .hero-subtitle {
+    max-width: 600px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .hero {
+    height: 100svh;
+    min-height: 560px;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 2rem 1.2rem;
+  }
+
+  .hero-badge {
+    font-size: 0.68rem;
+    letter-spacing: 0.07em;
+    padding: 0.45rem 0.7rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-title {
+    font-size: 2.7rem;
+    line-height: 1.06;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    max-width: 450px;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    margin-bottom: 1.7rem;
+  }
+
+  .hero-buttons {
+    width: 100%;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 310px;
+    min-width: 0;
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .hero-scroll {
+    bottom: 1.1rem;
+    font-size: 0.65rem;
+  }
+
+  /*
+    Disable background movement on mobile.
+    This is important for performance.
+  */
+  .hero-slide {
+    background-position: center center;
+    animation: none;
+    transform: none;
+    will-change: opacity;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .hero {
+    height: 100svh;
+    min-height: 520px;
+  }
+
+  .hero-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-badge {
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0.65rem;
+    margin-bottom: 1.1rem;
+
+    white-space: nowrap;
+  }
+
+  .hero-title {
+    font-size: 2.35rem;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    max-width: 330px;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 1.6rem;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 300px;
+
+    padding: 0.85rem 0.8rem;
+
+    font-size: 0.88rem;
+  }
+
+  .hero-slide {
+    background-position: center center;
+  }
+
+  .hero-scroll {
+    bottom: 0.8rem;
+    font-size: 0.62rem;
+  }
+
+  .hero-scroll::after {
+    font-size: 1rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .hero-content {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .hero-badge {
+    font-size: 0.55rem;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.82rem;
+    max-width: 290px;
+  }
+
+  .hero-buttons .btn {
+    max-width: 270px;
+    font-size: 0.82rem;
+    padding: 0.75rem 0.7rem;
+  }
+}
+
+/* =========================================================
+   REDUCE MOTION
+   Helps users/devices that prefer less animation
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-slide {
+    transition: none;
+    animation: none;
+  }
+
+  .hero-content,
+  .hero-scroll {
+    animation: none;
+  }
+}
