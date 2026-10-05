@@ -1,12 +1,91 @@
 # Indian Heritage Virtual Gallery
 
 
+## How the Virtual Gallery Works
 
-This project is a web-based virtual gallery for showcasing Indian handicrafts and living heritage.
+The website provides a simple flow for users to enter and explore the virtual museum.
 
-The project uses React for the website and Unity WebGL for the 3D virtual museum.
+### Step 1 - Open the Website
 
----
+Open the Indian Heritage Virtual Gallery website.
+
+The home page displays information about Indian handicrafts, textiles, traditional crafts, and the virtual gallery.
+
+### Step 2 - Enter the Virtual Gallery
+
+Click the:
+
+**"Enter the Virtual Gallery"**
+
+button on the home page.
+
+This takes the user to the Virtual Gallery page.
+
+### Step 3 - Unity WebGL Loading
+
+When the Virtual Gallery page opens, the Unity WebGL virtual museum starts loading.
+
+A loading screen and progress indicator are displayed while the Unity 3D environment and its required assets are being loaded.
+
+The loading process may take some time depending on:
+
+- Internet connection
+- Device performance
+- Browser
+- Size of the Unity WebGL build
+
+The user should wait until the loading process is completed.
+
+### Step 4 - Explore the Virtual Museum
+
+After Unity finishes loading, the 3D virtual museum becomes available.
+
+The user can then interact with the virtual environment and explore the museum.
+
+Users can:
+
+- Move around the virtual environment
+- Explore the 3D museum
+- View the heritage environment and exhibits
+- Interact with the virtual experience
+
+### Step 5 - Fullscreen Mode
+
+The Virtual Gallery page provides a **Fullscreen** option.
+
+Users can click **Fullscreen** to get a larger view of the virtual museum.
+
+To return to the normal view, click **Exit Fullscreen**.
+
+### Step 6 - Exit the Gallery
+
+When the user finishes exploring the virtual museum, they can click:
+
+**"Exit Gallery"**
+
+to return to the main website.
+
+### User Flow
+
+```text
+Home Page
+    ↓
+Click "Enter the Virtual Gallery"
+    ↓
+Virtual Gallery Page
+    ↓
+Unity WebGL Loading Screen
+    ↓
+Unity 3D Virtual Museum
+    ↓
+Explore / Interact with Museum
+    ↓
+Fullscreen (Optional)
+    ↓
+Exit Gallery
+    ↓
+Return to Website
+
 
 ## Technologies Used
 
