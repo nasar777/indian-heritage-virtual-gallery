@@ -605,7 +605,7 @@ Do not upload `.env` if it contains passwords, API keys, or other private inform
 ---
 
 
-# 20. Complete Setup in Short
+# 21. Complete Setup in Short
 
 ```bash
 git clone YOUR_GITHUB_REPOSITORY_LINK
