@@ -1,6 +1,6 @@
 # Indian Heritage Virtual Gallery
 
-## NPTEL Internship Project
+
 
 This project is a web-based virtual gallery for showcasing Indian handicrafts and living heritage.
 
